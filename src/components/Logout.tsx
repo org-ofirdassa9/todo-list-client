@@ -1,7 +1,8 @@
 import React from 'react'
 import httpClient from '../httpClient'
 
-const baseUrl = "//localhost:5000/api"
+const baseUrl = "//"+process.env.REACT_APP_API_BASE_URL+"/api";
+
 
 const Logout: React.FC = () => {
     

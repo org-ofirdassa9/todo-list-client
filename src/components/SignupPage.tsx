@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import httpClient from '../httpClient';
 
-const baseUrl = "//localhost:5000/api"
+const baseUrl = "//"+process.env.REACT_APP_API_BASE_URL+":5000/api";
 
 const SignupPage: React.FC = () => {
     const [email, setEmail] = useState<string>("");
@@ -22,7 +22,7 @@ const SignupPage: React.FC = () => {
         }
         catch (error: any) {
             if (error.response.status === 403) {
-                alert('Email already exsits');
+                alert('There was an error trying to sign up');
             }
         }
     };

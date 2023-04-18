@@ -5,7 +5,8 @@ import { Task } from '../types';
 import Logout from './Logout';
 import { User } from '../types';
 
-const baseUrl = '//localhost:5000/api'
+const Cookies = require('js-cookie');
+const baseUrl = "//"+process.env.REACT_APP_API_BASE_URL+"/api";
 
 const TodoPage: React.FC = () => {
     let user: User | null = null;
@@ -18,9 +19,10 @@ const TodoPage: React.FC = () => {
     
     const fetchTasks = async () => {
       if(user) {
+        console.log(Cookies.get())
         const resp = await axios.get(`${baseUrl}/gettasks`, {
             params: {
-              user_id: user.id
+              user_id: Cookies.get('session')['user_id']
             }}
         )
         const tasks = resp.data.tasks

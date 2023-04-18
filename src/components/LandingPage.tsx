@@ -4,9 +4,10 @@ import httpClient from '../httpClient';
 import { User } from '../types';
 import Logout from './Logout';
 
-const baseUrl="//localhost:5000/api"
+const baseUrl = "//"+process.env.REACT_APP_API_BASE_URL+"/api";
 
 const LandingPage: React.FC = () => {
+    {console.log(baseUrl)}
     const [user, setUser] = useState<User | null>(null);
     const navigate = useNavigate();
 

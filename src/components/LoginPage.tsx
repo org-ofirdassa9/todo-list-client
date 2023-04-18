@@ -1,7 +1,8 @@
 import React, {useState} from 'react'
 import httpClient from '../httpClient';
 
-const baseUrl = "//localhost:5000/api"
+const baseUrl = "//"+process.env.REACT_APP_API_BASE_URL+"/api";
+
 
 const LoginPage: React.FC = () => {
     const [email, setEmail] = useState<string>("");
@@ -17,6 +18,7 @@ const LoginPage: React.FC = () => {
             console.log(resp)
         }
         catch (error: any) {
+            console.log(error)
             if (error.response.status === 403) {
                 alert("Invalid credentials");
             }
@@ -33,16 +35,16 @@ const LoginPage: React.FC = () => {
                 type="text"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                id=""
+                id="email"
             />
         </div>
         <div>
             <label>Password: </label>
             <input
-                type="passowrd"
+                type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                id=""
+                id="password"
             />
         </div>
         <button type='button' onClick={() => logInUser()}>Sumbit</button>
